@@ -1,5 +1,8 @@
 <template>
-  <div data-cy="calendar-form">
+  <div
+    class="calendarform"
+    data-cy="calendar-form"
+  >
     <label for="startdate">Start date:</label>
     <input
       type="date"
@@ -24,7 +27,12 @@
       value="US"
     >
 
-    <button>Submit</button>
+    <button
+      data-cy="calendarform-submit"
+      @click="$emit('submit')"
+    >
+      Submit
+    </button>
   </div>
 </template>
 
@@ -33,13 +41,17 @@ export default {}
 </script>
 
 <style scoped>
+.calendarform {
+    width: 50%;
+    margin: auto;
+}
 label {
     display: inline-block;
-    width: 20%;
+    width: 30%;
 }
 
 input {
     margin-bottom: 15px;
-    width: 75%;
+    width: 65%;
 }
 </style>

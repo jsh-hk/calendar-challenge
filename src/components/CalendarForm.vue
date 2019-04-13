@@ -5,26 +5,26 @@
   >
     <label for="startdate">Start date:</label>
     <input
+      v-model="formData.startDate"
       type="date"
       name="startdate"
       data-cy="calendarform-startdate"
-      value="2018-04-01"
     >
 
     <label for="numberofdays">Number of days:</label>
     <input
+      v-model="formData.numberOfDays"
       type="number"
       name="numberofdays"
       data-cy="calendarform-numberofdays"
-      value="30"
     >
 
     <label for="start">Country Code:</label>
     <input
+      v-model="formData.countryCode"
       type="text"
       name="countrycode"
       data-cy="calendarform-countrycode"
-      value="US"
     >
 
     <button
@@ -37,7 +37,14 @@
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    formData: {
+      type: Object,
+      required: true
+    }
+  }
+}
 </script>
 
 <style scoped>

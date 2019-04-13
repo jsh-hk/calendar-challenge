@@ -1,11 +1,13 @@
 <template>
   <div id="app">
     <CalendarForm
-      v-if="!showCalendar"
+      v-if="showCalendarForm"
+      :form-data="formData"
       @submit="renderCalendar"
     />
     <Calendar
       v-else
+      :form-data="formData"
       @goBack="goBack"
     />
   </div>
@@ -23,20 +25,22 @@ export default {
   },
   data () {
     return {
-      showCalendar: false,
-      startDate: '2018-04-01',
-      numberOfDays: '30',
-      countryCode: 'US'
+      showCalendarForm: true,
+      formData: {
+        startDate: '2018-04-01',
+        numberOfDays: 30,
+        countryCode: 'US'
+      }
     }
   },
 
   methods: {
     renderCalendar () {
-      this.showCalendar = true
+      this.showCalendarForm = false
     },
 
     goBack () {
-      this.showCalendar = false
+      this.showCalendarForm = true
     }
   }
 }

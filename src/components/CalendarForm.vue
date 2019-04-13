@@ -24,6 +24,7 @@
       v-model="formData.countryCode"
       type="text"
       name="countrycode"
+      maxlength="2"
       data-cy="calendarform-countrycode"
     >
 

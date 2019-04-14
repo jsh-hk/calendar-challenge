@@ -1,10 +1,6 @@
 <template>
   <div data-cy="calendar">
-    The calendar
-    <hr>
-    Start date: {{ formData.startDate }}<br>
-    Number of days: {{ formData.numberOfDays }}<br>
-    Country Code: {{ formData.countryCode }}<br>
+    <CalendarMonth :month="formData.startDate" />
     <button
       data-cy="calendar-goback"
       @click="$emit('goBack')"
@@ -15,7 +11,12 @@
 </template>
 
 <script>
+import CalendarMonth from './CalendarMonth.vue'
+
 export default {
+  components: {
+    CalendarMonth
+  },
   props: {
     formData: {
       type: Object,
@@ -25,6 +26,13 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
+.table {
+    border: 1px solid #deedee;
+    width: 30%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
 </style>

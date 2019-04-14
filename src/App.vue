@@ -27,7 +27,7 @@ export default {
     return {
       showCalendarForm: true,
       formData: {
-        startDate: '2018-04-01',
+        startDate: '2019-04-01',
         numberOfDays: 30,
         countryCode: 'US'
       }

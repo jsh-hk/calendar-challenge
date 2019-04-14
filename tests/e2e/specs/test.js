@@ -1,8 +1,11 @@
 // https://docs.cypress.io/api/introduction/api.html
 
 describe('E2E tests', () => {
-  it('Initial form state/navigation', () => {
+  beforeEach(() => {
     cy.visit('/')
+  })
+
+  it('Initial form state/navigation', () => {
     cy.get('[data-cy=calendar-form]')
       .should('exist')
       .and('be.visible')
@@ -10,7 +13,7 @@ describe('E2E tests', () => {
     cy.get('[data-cy=calendarform-startdate]')
       .should('exist')
       .and('be.visible')
-      .and('have.value', '2018-04-01')
+      .and('have.value', '2019-04-01')
 
     cy.get('[data-cy=calendarform-numberofdays]')
       .should('exist')
@@ -40,5 +43,29 @@ describe('E2E tests', () => {
 
     cy.get('[data-cy=calendar]')
       .should('not.be.visible')
+  })
+
+  it('Renders the default calendar', () => {
+    cy.get('[data-cy=calendarform-submit]')
+      .click()
+
+    cy.get('[data-cy=calendar-month]')
+      .should('exist')
+      .and('be.visible')
+
+    cy.get('[data-cy=calendar-month] > thead > :nth-child(1) > td')
+      .should('contain', 'Apr 2019')
+
+    cy.log('Mar 31 - out of range')
+    cy.get('[data-cy="2019-03-31"]')
+      .should('have.class', 'out-of-range-day')
+
+    cy.log('Apr 12 - weekday')
+    cy.get('[data-cy="2019-04-12"]')
+      .should('have.class', 'weekday-day')
+
+    cy.log('Apr 7 - weekend')
+    cy.get('[data-cy="2019-04-07"]')
+      .should('have.class', 'weekend-day')
   })
 })

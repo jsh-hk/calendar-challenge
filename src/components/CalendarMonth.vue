@@ -1,8 +1,13 @@
 <template>
-  <table class="table">
+  <table
+    class="table"
+    data-cy="calendar-month"
+  >
     <thead>
       <tr>
-        <td colspan="7">
+        <td
+          colspan="7"
+        >
           {{ month | moment("MMM YYYY") }}
         </td>
       </tr>
@@ -24,6 +29,8 @@
         <td
           v-for="day in week"
           :key="day.index"
+          :class="dateClass(day)"
+          :data-cy="simpleDateString(day)"
         >
           <div v-if="isInCurrentMonth(day)">
             {{ day | moment("D") }}
@@ -59,6 +66,19 @@ export default {
     isInCurrentMonth (date) {
       return date.month() === moment(this.month).month()
     },
+
+    dateClass (date) {
+      return this.isInCurrentMonth(date)
+        ? date.day() === 0 || date.day() === 6
+          ? 'weekend-day'
+          : 'weekday-day'
+        : 'out-of-range-day'
+    },
+
+    simpleDateString (date) {
+      return date.format('YYYY-MM-DD')
+    },
+
     populateWeeks () {
       const startWeek = moment(this.month).startOf('month').week()
       const endWeek = moment(this.month).endOf('month').week()
@@ -79,6 +99,15 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+.weekend-day {
+  background-color: yellow;
+}
+.weekday-day {
+  background-color: lightgreen;
+}
+.out-of-range-day {
+  background-color: gray;
+}
 
 </style>

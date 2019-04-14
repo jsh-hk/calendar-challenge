@@ -64,7 +64,7 @@ export default {
       const endWeek = moment(this.month).endOf('month').week()
 
       this.weeks = []
-      for (var week = startWeek; week < endWeek; week++) {
+      for (var week = startWeek; week <= endWeek; week++) {
         this.weeks.push(
           Array(7).fill(0).map((n, i) =>
             moment()

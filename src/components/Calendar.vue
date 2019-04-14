@@ -56,7 +56,6 @@ export default {
         startDate.add(1, 'month')
         startDate = startDate.startOf('month')
       }
-      console.log(this.months)
     }
   }
 }

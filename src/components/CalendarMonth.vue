@@ -8,7 +8,7 @@
         <td
           colspan="7"
         >
-          {{ month | moment("MMM YYYY") }}
+          {{ startDate | moment("MMM YYYY") }}
         </td>
       </tr>
       <tr>
@@ -46,7 +46,7 @@ import moment from 'moment'
 
 export default {
   props: {
-    month: {
+    startDate: {
       type: String,
       required: true
     }
@@ -80,8 +80,9 @@ export default {
     },
 
     populateWeeks () {
-      const startWeek = moment(this.month).startOf('month').week()
-      const endWeek = moment(this.month).endOf('month').week()
+      let theStartdate = moment(this.startDate)
+      const startWeek = theStartdate.startOf('month').week()
+      const endWeek = theStartdate.endOf('month').week()
 
       this.weeks = []
       for (var week = startWeek; week <= endWeek; week++) {
@@ -89,6 +90,7 @@ export default {
           Array(7).fill(0).map((n, i) =>
             moment()
               .week(week)
+              .year(theStartdate.year())
               .startOf('week')
               .clone()
               .add(n + i, 'day')))

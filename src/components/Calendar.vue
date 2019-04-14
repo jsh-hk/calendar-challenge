@@ -1,6 +1,6 @@
 <template>
   <div data-cy="calendar">
-    <CalendarMonth :month="formData.startDate" />
+    <CalendarMonth :start-date="formData.startDate" />
     <button
       data-cy="calendar-goback"
       @click="$emit('goBack')"

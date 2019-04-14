@@ -79,7 +79,7 @@ export default {
     },
 
     dateClass (date) {
-      return this.isInCurrentMonth(date)
+      return this.isInRange(date)
         ? date.day() === 0 || date.day() === 6
           ? 'weekend-day'
           : 'weekday-day'

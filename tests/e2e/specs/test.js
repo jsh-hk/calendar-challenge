@@ -69,7 +69,7 @@ describe('E2E tests', () => {
       .should('have.class', 'weekend-day')
   })
 
-  xit('Renders a 17 day date range', () => {
+  it('Renders a 17 day date range', () => {
     cy.get('[data-cy=calendarform-startdate]')
       .clear()
       .type('2008-08-15')
@@ -80,6 +80,12 @@ describe('E2E tests', () => {
 
     cy.get('[data-cy=calendarform-submit]')
       .click()
+
+    cy.get('[data-cy="2008-08-14"]')
+      .should('have.class', 'out-of-range-day')
+
+    cy.get('[data-cy="2008-09-01"]')
+      .should('have.class', 'out-of-range-day')
   })
 
   xit('Renders a 30 day date range', () => {

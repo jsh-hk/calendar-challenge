@@ -7,6 +7,7 @@
       <tr>
         <td
           colspan="7"
+          class="table-header"
         >
           {{ startDate | moment("MMM YYYY") }}
         </td>
@@ -112,6 +113,9 @@ export default {
 </script>
 
 <style scoped>
+.table-header {
+  background-color: lightgreen;
+}
 .weekend-day {
   background-color: yellow;
 }

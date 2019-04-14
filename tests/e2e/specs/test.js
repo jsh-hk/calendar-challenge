@@ -68,4 +68,30 @@ describe('E2E tests', () => {
     cy.get('[data-cy="2019-04-07"]')
       .should('have.class', 'weekend-day')
   })
+
+  xit('Renders a 17 day date range', () => {
+    cy.get('[data-cy=calendarform-startdate]')
+      .clear()
+      .type('2008-08-15')
+
+    cy.get('[data-cy=calendarform-numberofdays]')
+      .clear()
+      .type('17')
+
+    cy.get('[data-cy=calendarform-submit]')
+      .click()
+  })
+
+  xit('Renders a 30 day date range', () => {
+    cy.get('[data-cy=calendarform-startdate]')
+      .clear()
+      .type('2008-08-15')
+
+    cy.get('[data-cy=calendarform-numberofdays]')
+      .clear()
+      .type('30')
+
+    cy.get('[data-cy=calendarform-submit]')
+      .click()
+  })
 })

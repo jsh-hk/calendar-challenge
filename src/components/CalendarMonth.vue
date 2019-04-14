@@ -32,7 +32,7 @@
           :class="dateClass(day)"
           :data-cy="simpleDateString(day)"
         >
-          <div v-if="isInCurrentMonth(day)">
+          <div v-if="isInRange(day)">
             {{ day | moment("D") }}
           </div>
         </td>
@@ -63,8 +63,18 @@ export default {
   },
 
   methods: {
+    isInRange (date) {
+      console.log(date)
+      return this.isInCurrentMonth(date) &&
+        this.isAfterStartDate(date)
+    },
+
     isInCurrentMonth (date) {
-      return date.month() === moment(this.month).month()
+      return date.month() === moment(this.startDate).month()
+    },
+
+    isAfterStartDate (date) {
+      return moment(this.startDate).isSameOrBefore(date)
     },
 
     dateClass (date) {

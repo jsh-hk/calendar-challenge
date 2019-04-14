@@ -1,7 +1,7 @@
 <template>
   <table
     class="table"
-    data-cy="calendar-month"
+    :data-cy="simpleMonthString"
   >
     <thead>
       <tr>
@@ -50,6 +50,10 @@ export default {
     startDate: {
       type: String,
       required: true
+    },
+    endDate: {
+      type: String,
+      required: true
     }
   },
 
@@ -59,15 +63,21 @@ export default {
     }
   },
 
+  computed: {
+    simpleMonthString () {
+      return moment(this.startDate).format('YYYY-MM')
+    }
+  },
+
   mounted () {
     this.populateWeeks()
   },
 
   methods: {
     isInRange (date) {
-      console.log(date)
       return this.isInCurrentMonth(date) &&
-        this.isAfterStartDate(date)
+        this.isAfterStartDate(date) &&
+        this.isBeforeEndDate(date)
     },
 
     isInCurrentMonth (date) {
@@ -76,6 +86,10 @@ export default {
 
     isAfterStartDate (date) {
       return moment(this.startDate).isSameOrBefore(date)
+    },
+
+    isBeforeEndDate (date) {
+      return moment(date).isSameOrBefore(this.endDate)
     },
 
     dateClass (date) {

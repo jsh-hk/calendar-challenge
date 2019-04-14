@@ -49,11 +49,11 @@ describe('E2E tests', () => {
     cy.get('[data-cy=calendarform-submit]')
       .click()
 
-    cy.get('[data-cy=calendar-month]')
+    cy.get('[data-cy="2019-04"]')
       .should('exist')
       .and('be.visible')
 
-    cy.get('[data-cy=calendar-month] > thead > :nth-child(1) > td')
+    cy.get('[data-cy="2019-04"] > thead > :nth-child(1) > td')
       .should('contain', 'Apr 2019')
 
     cy.log('Mar 31 - out of range')
@@ -88,7 +88,7 @@ describe('E2E tests', () => {
       .should('have.class', 'out-of-range-day')
   })
 
-  xit('Renders a 30 day date range', () => {
+  it('Renders a 30 day date range', () => {
     cy.get('[data-cy=calendarform-startdate]')
       .clear()
       .type('2008-08-15')
@@ -99,5 +99,23 @@ describe('E2E tests', () => {
 
     cy.get('[data-cy=calendarform-submit]')
       .click()
+
+    cy.get('[data-cy="2008-08"]')
+      .should('exist')
+      .and('be.visible')
+
+    cy.get('[data-cy="2008-09"]')
+      .should('exist')
+      .and('be.visible')
+
+    cy.get('[data-cy="2008-08-14"]')
+      .should('have.class', 'out-of-range-day')
+    cy.get('[data-cy="2008-08-15"]')
+      .should('not.have.class', 'out-of-range-day')
+
+    cy.get('[data-cy="2008-09-14"]')
+      .should('not.have.class', 'out-of-range-day')
+    cy.get('[data-cy="2008-09-15"]')
+      .should('have.class', 'out-of-range-day')
   })
 })
